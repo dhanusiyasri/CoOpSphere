@@ -1,0 +1,11 @@
+import { FormEvent, useState } from 'react';
+import { askIntelligenceAssistant, AssistantResponse } from './api';
+
+type Props={role:string};
+export function IntelligenceAssistant({role}:Props){
+ const [message,setMessage]=useState(''); const [response,setResponse]=useState<AssistantResponse|null>(null); const [loading,setLoading]=useState(false); const [error,setError]=useState('');
+ const suggestions=role==='TRAINEE'?['How is my learning progress?','What is my attendance?','Show my credentials','Show available jobs']:['Summarize training activity','Show low-attendance trainees','Show employment pipeline'];
+ async function ask(question:string){setLoading(true);setError('');try{setResponse(await askIntelligenceAssistant(question));setMessage('')}catch(err:any){setError(err.response?.data?.detail||'Unable to answer the question')}finally{setLoading(false)}}
+ async function submit(e:FormEvent){e.preventDefault();if(message.trim())await ask(message.trim())}
+ return <section className="panel intel-assistant"><div className="panel-heading"><div><p className="eyebrow">INTELLIGENCE-03</p><h3>AI Training & Career Assistant</h3><p className="muted">Grounded in current NCCT records. It does not invent data outside the platform.</p></div><span className="intel-role">{role}</span></div><div className="assistant-suggestions">{suggestions.map(s=><button key={s} className="secondary" disabled={loading} onClick={()=>ask(s)}>{s}</button>)}</div><form className="assistant-form" onSubmit={submit}><textarea rows={3} value={message} onChange={e=>setMessage(e.target.value)} placeholder="Ask about learning, attendance, credentials, jobs or training operations…"/><button className="primary" disabled={loading||!message.trim()}>{loading?'Thinking…':'Ask assistant'}</button></form>{error&&<div className="error">{error}</div>}{response&&<div className="assistant-answer"><div className="assistant-answer-head"><strong>{response.intent.replace('_',' ')}</strong><span>Grounded response</span></div><div className="assistant-text">{response.answer.split('\n').map((line,i)=><div key={i}>{line||' '}</div>)}</div><small>Sources: {response.sources.join(' • ')}</small><div className="assistant-suggestions followup">{response.suggestions.map(s=><button key={s} className="secondary" disabled={loading} onClick={()=>ask(s)}>{s}</button>)}</div></div>}</section>;
+}

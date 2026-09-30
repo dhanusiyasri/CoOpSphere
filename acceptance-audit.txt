@@ -1,0 +1,61 @@
+NCCT ACCEPTANCE AUDIT
+================================================================================
+PASS  Backend Python AST — 90 files parsed
+PASS  Alembic single head — heads=['0021_merge_all_heads']
+PASS  Router registered: training_schedule_router 
+PASS  Router registered: training_logistics_router 
+PASS  Router registered: training_evaluation_router 
+PASS  Router registered: attendance_router 
+PASS  Router registered: lms_router 
+PASS  Router registered: credentials_router 
+PASS  Router registered: careers_router 
+PASS  Router registered: intelligence_router 
+PASS  Router registered: dashboard_router 
+PASS  Router registered: skills_router 
+PASS  Router registered: skill_passport_router 
+PASS  Router registered: skill_recommendation_router 
+PASS  Router registered: notifications_router 
+PASS  Schedule field: batch_id 
+PASS  Schedule field: course_id 
+PASS  Schedule field: module_id 
+PASS  Schedule field: trainer_id 
+PASS  Schedule field: session_date 
+PASS  Schedule field: start_time 
+PASS  Schedule field: end_time 
+PASS  Schedule field: topic 
+PASS  Schedule field: venue 
+PASS  Schedule field: mode 
+PASS  Schedule field: status 
+PASS  Schedule field: notes 
+PASS  Schedule guard: End time must be after start 
+PASS  Schedule guard: Session date must fall withi 
+PASS  Schedule guard: Selected course does not bel 
+PASS  Schedule guard: Selected module does not bel 
+PASS  Schedule guard: Selected trainer is not an a 
+PASS  Frontend schedule support: getTrainingSchedules 
+PASS  Frontend schedule support: createTrainingSchedule 
+PASS  Frontend schedule support: createAttendanceForSchedule 
+PASS  Frontend schedule support: /training/schedules 
+PASS  Frontend schedule hardening: scheduleCourses 
+PASS  Frontend schedule hardening: scheduleModules 
+PASS  Frontend schedule hardening: selectedScheduleBatch 
+PASS  Frontend schedule hardening: Session date must be between 
+PASS  Frontend schedule hardening: End time must be after start tim 
+PASS  Frontend schedule hardening: min={selectedScheduleBatch?.star 
+PASS  Frontend schedule hardening: max={selectedScheduleBatch?.end_ 
+PASS  Frontend module: Dashboard 
+PASS  Frontend module: Notifications 
+PASS  Frontend module: TrainingERP 
+PASS  Frontend module: TrainingLogistics 
+PASS  Frontend module: TrainingEvaluation 
+PASS  Frontend module: Attendance 
+PASS  Frontend module: LMS 
+PASS  Frontend module: SkillsCredentials 
+PASS  Frontend module: VerifyCredential 
+PASS  Frontend module: SkillRecommendations 
+PASS  Frontend module: Careers 
+PASS  Frontend module: Intelligence 
+PASS  Frontend module: Administration 
+PASS  Frontend module: DigitalLiteracy 
+================================================================================
+PASS=57 FAIL=0
